@@ -1,0 +1,143 @@
+1. Create a user account with the following attribute
+	username: islam
+	Fullname/comment: Islam Askar
+	Password: islam
+		sudo useradd -c "Islam Askar" islam
+		sudo passwd islam ---> then type "islam"
+2. Create a user account with the following attribute
+	Username: baduser
+	Full name/comment: Bad User
+	Password: baduser
+		sudo useradd -c "Bad User" baduser
+		sudo passwd baduser---> then type "baduser"
+3. Create a supplementary (Secondary) group called pgroup with group ID of 30000
+	sudo groupadd -g 30000 pgroup
+4. Create a supplementary group called badgroup
+	sudo groupadd -g 5000 badgroup
+5. Add islam user to the pgroup group as a supplementary group
+	sudo usermod -G pgroup islam
+6. Modify the password of islam's account to password
+	sudo passwd islam ---> then type "password"
+7. Modify islam's account so the password expires after 30 days
+	sudo chage -M 30 islam 
+8. Lock bad user account so he can't log in
+	sudo usermod -L baduser
+9. Delete bad user account
+	sudo userdel baduser
+10. Delete the supplementary group called badgroup.
+	sudo groupdel badgroup
+13. Create a folder called myteam in your home directory and change its permissions to read only for the owner.
+	mkdir myteam
+	chmod +r myteam
+14. Log out and log in by another user
+	exit
+	su - islam
+15. Try to access (by cd command) the folder (myteam)
+	cd myteam
+16. Using the command Line
+	Change the permissions of oldpasswd file to give owner read and write permissions and for group write and execute and execute only for the others (using chmod in 2 different ways)
+		chmod +rw oldpasswd
+		chmod g+wx oldpasswd
+		chmod 0+w oldpasswd
+	Change your default permissions to be as above.
+		pam-config -a –umask –umask-umask=0035
+	What is the maximum permission a file can have, by default when it is just created? And what is that for directory.
+		666 for files, 777 for directories
+	Change your default permissions to be no permission to everyone then create a directory and a file to verify.
+		pam-config -a –umask –umask-umask=0006
+		mkdir bob
+		cd bob
+		cp /etc/passwd "$HOME/myteam/bob/passwdtest"
+17. What are the minimum permission needed for:
+	Copy a directory (permission for source directory and permissions for target parent directory)
+		Execute and write
+	Copy a file (permission for source file and and permission for target parent directory)
+		read and execute
+	Delete a file
+		Execute and write
+	Change to a directory
+		read and execute
+	List a directory content (ls command)
+		'3D Objects'/
+ 		AndroidStudioProjects/
+ 		AppData/
+		'Application Data'@
+		Contacts/
+		Cookies@
+		'Creative Cloud Files'/
+ 		Desktop/
+ 		Documents/
+ 		Downloads/
+ 		Dropbox/
+ 		Favorites/
+ 		Harmony3/
+ 		HarmonyProjects/
+		'Higher Level Care Jobs.pdf'
+		 Links/
+ 		'Local Settings'@
+ 		MPLABXProjects/
+ 		MicrosoftEdgeBackups/
+ 		Music/
+ 		'My Documents'@
+ 		NTUSER.DAT
+ 		NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf
+ 		NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms
+ 		NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms
+ 		NetHood@
+ 		'New folder'/
+ 		OneDrive/
+ 		Pictures/
+ 		PrintHood@
+ 		Recent@
+		'Saved Games'/
+ 		Searches/
+ 		SendTo@
+		'Start Menu'@
+ 		Templates@
+ 		Videos/
+ 		ansel/
+ 		ansuitmp
+ 		cleanup-ansys-DESKTOP-0JP4KN3-10996.bat
+ 		cleanup-fluent-DESKTOP-0JP4KN3-4196.bat
+ 		codelab-textclassification-ios/
+ 		debug.log
+ 		eclipse/
+ 		eclipse-workspace/
+ 		file.db
+ 		file.lock
+ 		file0.err
+ 		file0.log
+ 		file0.page
+ 		file1.err
+ 		file1.log
+ 		file1.out
+		file1.page
+ 		matplotlib/
+ 		menust.tmp
+ 		ntuser.dat.LOG1
+ 		ntuser.dat.LOG2
+ 		ntuser.ini
+ 		portacle/
+ 		source/
+ 		tgrid-2916.trn		
+	View a file content (more/cat command)
+	cat $HOME/myteam/oldpasswd
+	more $HOME/myteam/oldpasswd	
+	Modify a file content
+		cat > $HOME/myteam/oldpasswd
+18. Create a file with permission 444. Try to edit in it and to remove it? Note what happened.
+	cat > yourfile.txt ----> CTRL-D
+	chmod 444 yourfile.txt
+	vi yourfile.txt ---> "i" Warning read only file is displayed
+19. What is the difference between the “x” permission for a file and for a directory?
+	Execute permission on files means the right to execute them, if they are programs. For directories, execute permission allows you to enter the directory (i.e., cd into it), and to access any of its files.
+20. Issue the command "sleep 100" in background.
+	sleep 100 &
+21. Kill the sleep command.
+	kill -9 sleep
+22. Display your processes only
+	ps -u Yomna
+23. Display all processes except yours
+	ps -d
+24. Use the pgrep command to list your processes only
+	pgrep -u Yomna
